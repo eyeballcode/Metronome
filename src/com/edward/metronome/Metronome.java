@@ -1,41 +1,40 @@
 package com.edward.metronome;
 
-public class Metronome extends Thread  {
+public class Metronome extends Thread {
+    private int ticked = 0;
+    private boolean shouldContinue = true;
     private int bpm = 0;
-    static int ticked = 0;
-    static boolean shouldContinue = true;
-
-    public void startMetronome() {
-        ticked = 0;
-        shouldContinue = true;
-        new Thread(this).run();
-        return;
-    }
 
     public Metronome(int bpm) {
         this.bpm = bpm;
     }
 
-
-
-    public int ticked() {
-        return ticked;
-    }
-
-    private int msBetweenBeats() {
-        return 60/bpm * 1000;
+    public void startMetronome() {
+        ticked = 0;
+        shouldContinue = true;
+        new Thread(this).start();
     }
 
     public void stopMetronome() {
         shouldContinue = false;
     }
 
+    public int ticked() {
+        return ticked;
+    }
+
     @Override
     public void run() {
-        while (shouldContinue == true) try {
-            this.sleep(msBetweenBeats());
+        while (shouldContinue) {
             ticked++;
-        } catch (InterruptedException e) {
+            try {
+                Thread.sleep(msBetweenBeats());
+            } catch (InterruptedException e) {
+            }
         }
+    }
+
+    private int msBetweenBeats() {
+        return (int) ((60.0 / bpm) * 1000);
     }
 }
