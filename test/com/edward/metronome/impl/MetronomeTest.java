@@ -1,4 +1,4 @@
-package com.edward.metronome;
+package com.edward.metronome.impl;
 
 import org.junit.Test;
 
