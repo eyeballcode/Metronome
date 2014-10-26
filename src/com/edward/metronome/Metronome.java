@@ -1,16 +1,16 @@
 package com.edward.metronome;
 
 public class Metronome extends Thread {
-    private int ticked = 0;
     private boolean shouldContinue = true;
     private int bpm = 0;
+    private StarPrinter sp;
 
-    public Metronome(int bpm) {
+    public Metronome(int bpm, StarPrinter starPrinter) {
         this.bpm = bpm;
+        sp = starPrinter;
     }
 
     public void startMetronome() {
-        ticked = 0;
         shouldContinue = true;
         new Thread(this).start();
     }
@@ -19,14 +19,10 @@ public class Metronome extends Thread {
         shouldContinue = false;
     }
 
-    public int ticked() {
-        return ticked;
-    }
-
     @Override
     public void run() {
         while (shouldContinue) {
-            ticked++;
+            sp.tick();
             try {
                 Thread.sleep(msBetweenBeats());
             } catch (InterruptedException e) {
