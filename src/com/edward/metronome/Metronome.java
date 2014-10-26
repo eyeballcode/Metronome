@@ -1,6 +1,6 @@
 package com.edward.metronome;
 
-public class Metronome extends Thread {
+public class Metronome implements Runnable {
     private boolean shouldContinue = true;
     private int bpm = 0;
     private StarPrinter sp;
@@ -10,12 +10,12 @@ public class Metronome extends Thread {
         sp = starPrinter;
     }
 
-    public void startMetronome() {
+    public void start() {
         shouldContinue = true;
         new Thread(this).start();
     }
 
-    public void stopMetronome() {
+    public void stop() {
         shouldContinue = false;
     }
 

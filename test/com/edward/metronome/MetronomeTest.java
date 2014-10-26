@@ -14,9 +14,9 @@ public class MetronomeTest {
         StarPrinter starPrinter = new StarPrinter();
         Metronome m = new Metronome(120, starPrinter);
 
-        m.startMetronome();
+        m.start();
         Thread.sleep(10000);
-        m.stopMetronome();
+        m.stop();
 
         assertEquals("Did not call star printer 20 times in 10 seconds", 20, starPrinter.timesCalled());
     }
