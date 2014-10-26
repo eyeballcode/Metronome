@@ -3,11 +3,11 @@ package com.edward.metronome;
 public class Metronome implements Runnable {
     private boolean shouldContinue = true;
     private int bpm = 0;
-    private StarPrinter sp;
+    private Ticker ticker;
 
-    public Metronome(int bpm, StarPrinter starPrinter) {
+    public Metronome(int bpm, Ticker ticker) {
         this.bpm = bpm;
-        sp = starPrinter;
+        this.ticker = ticker;
     }
 
     public void start() {
@@ -22,7 +22,7 @@ public class Metronome implements Runnable {
     @Override
     public void run() {
         while (shouldContinue) {
-            sp.tick();
+            ticker.tick();
             try {
                 Thread.sleep(msBetweenBeats());
             } catch (InterruptedException e) {
