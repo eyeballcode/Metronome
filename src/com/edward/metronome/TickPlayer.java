@@ -1,5 +1,7 @@
 package com.edward.metronome;
 
+import com.edward.metronome.impl.Ticker;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
