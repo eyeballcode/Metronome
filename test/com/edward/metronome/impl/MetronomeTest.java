@@ -11,7 +11,7 @@ public class MetronomeTest {
 
     @Test
     public void metronome_calls_action_listener_20_times_in_10s_if_120_bpm() throws Exception {
-        StarPrinter starPrinter = new StarPrinter();
+        TickPlayer starPrinter = new TickPlayer();
         Metronome m = new Metronome(120, starPrinter);
 
         m.start();
